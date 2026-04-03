@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syed Fasih Ali | Salesforce Consultant & Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        salesforce: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        dark: {
+                            900: '#0a0a0a',
+                            800: '#171717',
+                            700: '#262626',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'gradient': 'gradient 8s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        gradient: {
+                            '0%, 100%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        .glass-card {
+            background: rgba(23, 23, 23, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #38bdf8 0%, #0284c7 50%, #0ea5e9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.15) 0%, transparent 50%);
+        }
+        
+        .grid-pattern {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        
+        .cert-card {
+            transition: all 0.3s ease;
+        }
+        
+        .cert-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(14, 165, 233, 0.2);
+        }
+        
+        .experience-card {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, rgba(14, 165, 233, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .experience-card:hover::before {
+            opacity: 1;
+        }
+        
+        .skill-tag {
+            transition: all 0.3s ease;
+        }
+        
+        .skill-tag:hover {
+            background: rgba(14, 165, 233, 0.2);
+            border-color: rgba(14, 165, 233, 0.5);
+            transform: scale(1.05);
+        }
+        
+        .bento-item {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .bento-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 25px 50px -12px rgba(14, 165, 233, 0.25);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #38bdf8;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .scroll-indicator {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-card border-b border-white/10 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-salesforce-400 to-salesforce-600 flex items-center justify-center text-white font-bold text-xl">
+                        SFA
+                    </div>
+                    <span class="font-display font-bold text-xl tracking-tight">Syed Fasih Ali</span>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">About</a>
+                    <a href="#experience" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Experience</a>
+                    <a href="#skills" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Skills</a>
+                    <a href="#certifications" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Certifications</a>
+                    <a href="#contact" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Contact</a>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <a href="https://linkedin.com/in/smfasihaly" target="_blank" class="text-gray-400 hover:text-salesforce-400 transition-colors">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="mailto:smfasihaly@gmail.com" class="px-4 py-2 rounded-full bg-salesforce-600 hover:bg-salesforce-500 text-white text-sm font-medium transition-all hover:scale-105">
+                        Hire Me
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden grid-pattern">
+        <div class="absolute inset-0 hero-gradient"></div>
+        
+        <!-- Floating Elements -->
+        <div class="absolute top-1/4 left-10 w-20 h-20 rounded-full bg-salesforce-500/20 blur-xl animate-float"></div>
+        <div class="absolute bottom-1/4 right-10 w-32 h-32 rounded-full bg-salesforce-600/20 blur-xl animate-float" style="animation-delay: 2s;"></div>
+        <div class="absolute top-1/2 right-1/4 w-16 h-16 rounded-full bg-salesforce-400/20 blur-lg animate-float" style="animation-delay: 4s;"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8 animate-fade-in">
+                <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                <span class="text-sm text-gray-300">Available for new opportunities</span>
+            </div>
+
+            <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
+                Salesforce <span class="text-gradient">Consultant</span><br>
+                <span class="text-4xl md:text-6xl lg:text-7xl text-gray-400">& Developer</span>
+            </h1>
+
+            <p class="mt-6 text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed typing-cursor" id="typewriter">
+                Delivering cloud solutions across Europe with 5+ years of expertise
+            </p>
+
+            <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="#contact" class="px-8 py-4 rounded-full bg-gradient-to-r from-salesforce-600 to-salesforce-500 text-white font-semibold text-lg hover:shadow-lg hover:shadow-salesforce-500/30 transition-all hover:scale-105 flex items-center gap-2">
+                    <i class="fas fa-paper-plane"></i>
+                    Get In Touch
+                </a>
+                <a href="#experience" class="px-8 py-4 rounded-full border border-white/20 text-white font-semibold text-lg hover:bg-white/5 transition-all flex items-center gap-2">
+                    <i class="fas fa-briefcase"></i>
+                    View Experience
+                </a>
+            </div>
+
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-salesforce-400">5+</div>
+                    <div class="text-sm text-gray-500 mt-1">Years Experience</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-salesforce-400">4</div>
+                    <div class="text-sm text-gray-500 mt-1">Certifications</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-salesforce-400">70%</div>
+                    <div class="text-sm text-gray-500 mt-1">Manual Work Reduced</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-salesforce-400">EU</div>
+                    <div class="text-sm text-gray-500 mt-1">Remote Ready</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 scroll-indicator">
+            <i class="fas fa-chevron-down text-gray-500 text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-6">
+                    <h2 class="font-display text-4xl md:text-5xl font-bold">
+                        Certified Expert in <span class="text-gradient">Cloud Solutions</span>
+                    </h2>
+                    <p class="text-lg text-gray-400 leading-relaxed">
+                        Based in Turin, Italy, I am a Certified Salesforce Consultant and Developer with a Master's in Computer Science from the University of Florence. I specialize in delivering end-to-end Salesforce implementations that drive business automation and digital transformation.
+                    </p>
+                    <p class="text-lg text-gray-400 leading-relaxed">
+                        My expertise spans Apex, LWC, Flows, and complex integrations with legacy systems. I've successfully reduced operational costs by up to 70% through intelligent automation and voice agent implementations for international clients.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-3 pt-4">
+                        <span class="px-4 py-2 rounded-full bg-salesforce-900/30 border border-salesforce-700/30 text-salesforce-300 text-sm">
+                            <i class="fas fa-map-marker-alt mr-2"></i>Turin, Italy
+                        </span>
+                        <span class="px-4 py-2 rounded-full bg-salesforce-900/30 border border-salesforce-700/30 text-salesforce-300 text-sm">
+                            <i class="fas fa-globe mr-2"></i>Remote EU-wide
+                        </span>
+                        <span class="px-4 py-2 rounded-full bg-salesforce-900/30 border border-salesforce-700/30 text-salesforce-300 text-sm">
+                            <i class="fas fa-language mr-2"></i>English C1 | Italian A2
+                        </span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bento-item glass-card rounded-2xl p-6 border border-white/10">
+                        <div class="w-12 h-12 rounded-xl bg-salesforce-600/20 flex items-center justify-center mb-4">
+                            <i class="fas fa-cloud text-salesforce-400 text-2xl"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-lg mb-2">Sales Cloud</h3>
+                        <p class="text-sm text-gray-400">Expert implementation and customization of sales processes</p>
+                    </div>
+                    
+                    <div class="bento-item glass-card rounded-2xl p-6 border border-white/10 mt-8">
+                        <div class="w-12 h-12 rounded-xl bg-purple-600/20 flex items-center justify-center mb-4">
+                            <i class="fas fa-headset text-purple-400 text-2xl"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-lg mb-2">Service Cloud</h3>
+                        <p class="text-sm text-gray-400">Customer service solutions and case management</p>
+                    </div>
+                    
+                    <div class="bento-item glass-card rounded-2xl p-6 border border-white/10">
+                        <div class="w-12 h-12 rounded-xl bg-green-600/20 flex items-center justify-center mb-4">
+                            <i class="fas fa-users text-green-400 text-2xl"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-lg mb-2">Experience Cloud</h3>
+                        <p class="text-sm text-gray-400">B2B portals and partner community solutions</p>
+                    </div>
+                    
+                    <div class="bento-item glass-card rounded-2xl p-6 border border-white/10 mt-8">
+                        <div class="w-12 h-12 rounded-xl bg-orange-600/20 flex items-center justify-center mb-4">
+                            <i class="fas fa-code text-orange-400 text-2xl"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-lg mb-2">Development</h3>
+                        <p class="text-sm text-gray-400">Apex, LWC, and integration architecture</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="py-24 bg-dark-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-4xl md:text-5xl font-bold mb-4">Salesforce <span class="text-gradient">Certifications</span></h2>
+                <p class="text-gray-400 text-lg">Industry-recognized credentials validating expertise</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="cert-card glass-card rounded-2xl p-6 border border-white/10 text-center group cursor-pointer">
+                    <div class="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white text-3xl shadow-lg shadow-blue-500/30 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-lg mb-2">Platform Developer I</h3>
+                    <p class="text-sm text-gray-400">Apex, Visualforce & Lightning Development</p>
+                    <div class="mt-4 inline-flex items-center text-xs text-salesforce-400">
+                        <i class="fas fa-check-circle mr-1"></i> Certified
+                    </div>
+                </div>
+
+                <div class="cert-card glass-card rounded-2xl p-6 border border-white/10 text-center group cursor-pointer">
+                    <div class="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center text-white text-3xl shadow-lg shadow-purple-500/30 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-cubes"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-lg mb-2">Platform App Builder</h3>
+                    <p class="text-sm text-gray-400">Custom Apps & Data Modeling</p>
+                    <div class="mt-4 inline-flex items-center text-xs text-salesforce-400">
+                        <i class="fas fa-check-circle mr-1"></i> Certified
+                    </div>
+                </div>
+
+                <div class="cert-card glass-card rounded-2xl p-6 border border-white/10 text-center group cursor-pointer">
+                    <div class="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center text-white text-3xl shadow-lg shadow-green-500/30 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-lg mb-2">Administrator</h3>
+                    <p class="text-sm text-gray-400">Configuration & Setup</p>
+                    <div class="mt-4 inline-flex items-center text-xs text-salesforce-400">
+                        <i class="fas fa-check-circle mr-1"></i> Certified
+                    </div>
+                </div>
+
+                <div class="cert-card glass-card rounded-2xl p-6 border border-white/10 text-center group cursor-pointer">
+                    <div class="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-orange-500 to-orange-700 flex items-center justify-center text-white text-3xl shadow-lg shadow-orange-500/30 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-lg mb-2">Sales Cloud Consultant</h3>
+                    <p class="text-sm text-gray-400">Sales Solutions & Implementation</p>
+                    <div class="mt-4 inline-flex items-center text-xs text-salesforce-400">
+                        <i class="fas fa-check-circle mr-1"></i> Certified
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section
